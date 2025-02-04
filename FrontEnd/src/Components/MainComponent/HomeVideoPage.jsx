@@ -32,19 +32,19 @@ function HomeVideoPage({ videos }) {
             </div>
             <div className="flex flex-col">
               <div>
-                <Link to={`/user/channel/${video.user._id}`} className="flex items-center">
+                <Link to={`/user/channel/${video?.user?._id}`} className="flex items-center">
                   <img
-                    src={video.user.profileavtar}
+                    src={video?.user?.profileavtar}
                     alt="logo"
                     className="md:w-9 xs:w-6 xs:h-6 xxs:w-6 xxs:h-6 md:h-9 rounded-full mr-1"
                   />
-                  <p className="text-white">{video.user.channelname}</p>
+                  <p className="text-white">{video?.user?.channelname}</p>
                 </Link>
               </div>
               <div className="ml-2 mt-1 flex items-center">
                 <p className="text-white xs:text-[15px] xxs:text-[14px]">2M views.</p>
                 <p className="text-white">
-                  {video.user.createdAt.slice(0, 10)}
+                  {video?.user?.createdAt.slice(0, 10)}
                 </p>
               </div>
             </div>

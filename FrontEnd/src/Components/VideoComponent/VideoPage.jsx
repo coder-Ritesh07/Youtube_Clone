@@ -164,7 +164,7 @@ function VideoPage() {
     console.log("fetdata",suggestVideo);
 
   return (
-    <div className="bg-black relative">
+    <div className="bg-black min-h-screen relative">
       <Header toggleSidebar={toggleSidebar} />
       <div className="absolute left-0 z-50">
         {isSidebarVisible && <SideBar />}
@@ -172,7 +172,7 @@ function VideoPage() {
       <div className="max-w-[90%] my-0 mx-auto p-3   lg:flex lg:gap-x-4  md:gap-y-5">
         {/* video section start here */}
         <div>
-          <div className=" xl:w-[800px] lg:w-[550px] lg:h-[550px] md:w-[650px] md:h-[650px]  ">
+          <div className=" xl:w-[800px] lg:w-[550px]  lg:h-[550px] md:w-[650px] md:h-[650px]  ">
             <video
               src={fetchdata.videolink}
               controls

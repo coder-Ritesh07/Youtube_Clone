@@ -53,20 +53,36 @@ let editComments = async (req, res) => {
   }
 };
 
-let deleteComment=async (req,res)=>{
+const deleteComment = async (req, res) => {
   try {
-    let cmtId = req.params.commentid;
-    let deletecmt=await comments.findOneAndDelete({_id:cmtId})
-    if(!deleteComment)
-    {
+    const { commentid, userid } = req.params;
+
+    let deleteQuery = {};
+    if (commentid) {
+      deleteQuery._id = commentid;
+    } else if (userid) {
+      deleteQuery.userid = userid;
+    } else {
+      return res.status(400).json({ message: "Comment ID or User ID required" });
+    }
+
+    const deletecmt = await comments.findOneAndDelete(deleteQuery);
+    
+    if (!deletecmt) {
       return res.status(404).json({ message: "Comment not found" });
     }
-    res.status(200).json({message:"Comment Deleted Successfully",delete:deletecmt})
+
+    res.status(200).json({
+      message: "Comment Deleted Successfully",
+      delete: deletecmt
+    });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
-}
+};
+
 
 module.exports = {
   userComments,

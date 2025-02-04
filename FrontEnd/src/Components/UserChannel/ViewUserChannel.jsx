@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import {toast,ToastContainer} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import { BiLoaderCircle } from "react-icons/bi";
+
 
 function ViewUserChannel() {
   let { userid } = useParams();
@@ -17,6 +19,7 @@ function ViewUserChannel() {
   let [threedot, setThreedot] = useState(false);
   let login = localStorage.getItem("userId");
   let [getDataConditionally,setDataConditionally]=useState([])
+  const [pageloader,setPageloader]=useState(false)
   useEffect(() => {
     if (login == null) {
       setLogin(false);
@@ -29,10 +32,12 @@ function ViewUserChannel() {
   };
   // get the channel by userid
   useEffect(() => {
+    setPageloader(true)
     axios
       .get(`http://localhost:5000/video/watch/channel/${userid}`)
       .then((res) => {
         //  console.log(res.data.videouserId)
+        setPageloader(false)
         setFetchdata(res.data.videouserId);
       })
       .catch((err) => {
@@ -54,9 +59,11 @@ function ViewUserChannel() {
 
   async function handleDeleteUserVideo(videoid) {
     // console.log("videoid-", videoid);
+    setPageloader(true)
     try {
       
       let reponse=await axios.delete(`http://localhost:5000/video/watch/channel/${videoid}`,{withCredentials:true})
+      setPageloader(false)
       console.log(reponse)
       toast.success("Video Delete Successfully")
       setTimeout(() => {
@@ -68,9 +75,13 @@ function ViewUserChannel() {
     }
 
   }
+
+
+
 //  delete the user Channel here
-  async function hanleDeleteUserChannel(userid) {
-    console.log(userid)
+  async function handleDeleteUserChannel(userid,videoid) {
+    console.log(userid,"videoId",videoid)
+
     try {
       let reponse=await axios.delete(`http://localhost:5000/user/${userid}`,{withCredentials:true})
       console.log(reponse)
@@ -163,7 +174,7 @@ function ViewUserChannel() {
                       </button>
                     )}
                     {islogin && login === userid && (
-                      <button className="bg-white font-[500] xl:mt-3 md:px-3 md:py-2 xs:px-2 xs:py-1 rounded-3xl" onClick={()=>hanleDeleteUserChannel(fetchdata[0].user._id)}>
+                      <button className="bg-white font-[500] xl:mt-3 md:px-3 md:py-2 xs:px-2 xs:py-1 rounded-3xl" onClick={()=>handleDeleteUserChannel(fetchdata[0].user._id,fetchdata[0]._id)}>
                         Delete Channel
                       </button>
                     )}
@@ -268,7 +279,7 @@ function ViewUserChannel() {
                       </button>
                     )}
                     {islogin && login === userid && (
-                      <button className="bg-white font-[500] xl:mt-3 xxs:px-2 md:px-3 md:py-2 xs:px-2 xs:py-1 rounded-3xl" onClick={()=>hanleDeleteUserChannel(channel._id)}>
+                      <button className="bg-white font-[500] xl:mt-3 xxs:px-2 md:px-3 md:py-2 xs:px-2 xs:py-1 rounded-3xl" onClick={()=>handleDeleteUserChannel(channel._id)}>
                         Delete Channel
                       </button>
                     )}
@@ -279,6 +290,9 @@ function ViewUserChannel() {
               <div className="w-full border-[#ffffff8e] border my-4"></div>
               <div className="flex justify-center">
                 <h1 className="text-white text-2xl font-bold">No Videos Available</h1>
+                {pageloader && (
+                  <BiLoaderCircle className="text-blue-500 md:text-5xl xs:text-[22px] animate-spin" />
+                )}
               </div>
             </div>
       </>

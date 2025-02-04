@@ -10,7 +10,7 @@ const { videoRouter } = require('./routes/Video')
 const { commentRouter } = require('./routes/Comments')
 
 // connect the with mongodb server
-mongoose.connect('mongodb://localhost:27017/Youtube-Clone')
+mongoose.connect('mongodb+srv://ritesh:Ritesh123@cluster0.0zvkn.mongodb.net/Youtube-Clone')
 
 let db=mongoose.connection
 
