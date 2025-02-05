@@ -77,7 +77,7 @@ function Signup() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/user/signup", signUp);
+      const res = await axios.post("https://youtube-clone-2-s2ml.onrender.com/user/signup", signUp);
       toast.success(res.data.message);
       navigate("/");
     } catch (err) {
