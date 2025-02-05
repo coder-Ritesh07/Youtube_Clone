@@ -5,12 +5,12 @@ const { jwtAuthentication } = require('./middleware/Auth')
 const cors=require('cors')
 
 // connect to the database
-const mongoose=require('mongoose')
-const { videoRouter } = require('./routes/Video')
-const { commentRouter } = require('./routes/Comments')
+const mongoose=require('mongoose');
+const { videoRouter } = require('./routes/Video');
+const { commentRouter } = require('./routes/Comments');
 
 // connect the with mongodb server
-mongoose.connect('mongodb+srv://ritesh:Ritesh123@cluster0.0zvkn.mongodb.net/Youtube-Clone')
+mongoose.connect('mongodb+srv://ritesh:Ritesh123@cluster0.0zvkn.mongodb.net/Youtube-Clone');
 
 let db=mongoose.connection
 

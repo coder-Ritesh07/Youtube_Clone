@@ -23,7 +23,7 @@ function VideoPage() {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/video/watch/${id}`)
+      .get(`https://youtube-clone-2-s2ml.onrender.com/video/watch/${id}`)
       .then((res) => {
         // console.log(res);
         setFetchdata(res.data.video);
@@ -39,7 +39,7 @@ function VideoPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/usercomment/${id}`)
+      .get(`https://youtube-clone-2-s2ml.onrender.com/usercomment/${id}`)
       .then((res) => {
         console.log(res.data.allusercomment);
         setfetchcomments(res.data.allusercomment);
@@ -58,7 +58,7 @@ function VideoPage() {
     };
     try {
       let response = await axios.post(
-        "http://localhost:5000/usercomment",
+        "https://youtube-clone-2-s2ml.onrender.com/usercomment",
         commentBody,
         { withCredentials: true }
       );
@@ -107,7 +107,7 @@ function VideoPage() {
 
     try {
       let response = await axios.put(
-        `http://localhost:5000/usercomment/${editedComment.cmtid}`,
+        `https://youtube-clone-2-s2ml.onrender.com/usercomment/${editedComment.cmtid}`,
         body,
         { withCredentials: true }
       );
@@ -136,7 +136,7 @@ function VideoPage() {
     console.log("cmtId",cmtid)
     try {
       let dltrep = await axios.delete(
-        `http://localhost:5000/usercomment/${cmtid}`,{withCredentials:true}
+        `https://youtube-clone-2-s2ml.onrender.com/usercomment/${cmtid}`,{withCredentials:true}
       );
       console.log(dltrep);
       setTimeout(() => {
@@ -153,7 +153,7 @@ function VideoPage() {
   // fetch the suggest video from api
   useEffect(() => {
     axios
-      .get("http://localhost:5000/video/allvideos")
+      .get("https://youtube-clone-2-s2ml.onrender.com/video/allvideos")
       .then((res) => {
         setsuggestVideo(res.data.video);
       })

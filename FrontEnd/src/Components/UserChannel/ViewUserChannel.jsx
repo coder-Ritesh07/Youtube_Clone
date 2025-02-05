@@ -34,7 +34,7 @@ function ViewUserChannel() {
   useEffect(() => {
     setPageloader(true)
     axios
-      .get(`http://localhost:5000/video/watch/channel/${userid}`)
+      .get(`https://youtube-clone-2-s2ml.onrender.com/video/watch/channel/${userid}`)
       .then((res) => {
         //  console.log(res.data.videouserId)
         setPageloader(false)
@@ -62,7 +62,7 @@ function ViewUserChannel() {
     setPageloader(true)
     try {
       
-      let reponse=await axios.delete(`http://localhost:5000/video/watch/channel/${videoid}`,{withCredentials:true})
+      let reponse=await axios.delete(`https://youtube-clone-2-s2ml.onrender.com/video/watch/channel/${videoid}`,{withCredentials:true})
       setPageloader(false)
       console.log(reponse)
       toast.success("Video Delete Successfully")
@@ -83,7 +83,7 @@ function ViewUserChannel() {
     console.log(userid,"videoId",videoid)
 
     try {
-      let reponse=await axios.delete(`http://localhost:5000/user/${userid}`,{withCredentials:true})
+      let reponse=await axios.delete(`https://youtube-clone-2-s2ml.onrender.com/user/${userid}`,{withCredentials:true})
       console.log(reponse)
       localStorage.clear();
       getLogout()
@@ -101,7 +101,7 @@ function ViewUserChannel() {
   // its work when user delete the channel the user immedeatly logout
   function getLogout() {
     axios
-      .post("http://localhost:5000/user/logout", {}, { withCredentials: true })
+      .post("https://youtube-clone-2-s2ml.onrender.com/user/logout", {}, { withCredentials: true })
       .then((res) => {
         console.log(res);
       })
@@ -113,7 +113,7 @@ function ViewUserChannel() {
   // get data Conditionally when user has not any data
   useEffect(()=>{
    try {
-    axios.get(`http://localhost:5000/user/userinfo/${userid}`).then((res)=>{
+    axios.get(`https://youtube-clone-2-s2ml.onrender.com/user/userinfo/${userid}`).then((res)=>{
       // console.log("conditional-",res)
       setDataConditionally(res.data.userdata)
     })

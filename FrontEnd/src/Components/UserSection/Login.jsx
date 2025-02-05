@@ -22,7 +22,7 @@ function Login() {
   //  handle the login user data by send the serevr and store the user information like login Userid, profileavtar, jWT tokens
    async function handleLoginUser() {
     setLoading(true)
-    axios.post('http://localhost:5000/user/login',login,{withCredentials:true}).then((res)=>{
+    axios.post('https://youtube-clone-2-s2ml.onrender.com/user/login',login,{withCredentials:true}).then((res)=>{
       setLoading(false)
       // console.log(res)
       localStorage.setItem('token',res.data.tokens)
