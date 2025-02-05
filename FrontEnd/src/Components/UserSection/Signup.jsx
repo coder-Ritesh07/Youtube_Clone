@@ -77,16 +77,17 @@ function Signup() {
     }
 
     try {
-      const res = await axios.post("https://youtube-clone-2-s2ml.onrender.com/user/signup", signUp);
+      const res = await axios.post("http://localhost:5000/user/signup", signUp);
       toast.success(res.data.message);
-      navigate("/");
+      navigate("/user/login");
     } catch (err) {
-      toast.error(err.message);
+      toast.error("User Already Exist");
+      // console.log(err)
     }
   }
 
   return (
-    <div className={`bg-black h-full`}>
+    <div className={`bg-black min-h-screen`}>
       <Header toggleSidebar={toggleSidebar} />
       <div className="absolute left-0 z-50 ">
         {isSidebarVisible && <SideBar />}
@@ -97,7 +98,7 @@ function Signup() {
           isSidebarVisible ? "h-screen" : "h-full"
         } mt-14 `}
       >
-        <div className="md:w-[550px] md:h-[550px] xs:w-[300px] xs:h-[390px] xxs:w-[280px] xxs:h-[390px]  flex flex-col  items-center md:gap-y-8 xs:gap-y-4 xxs:gap-y-3 mb-14  p-3 rounded-md shadow-white shadow bg-[#000]">
+        <div className="md:w-[550px]  md:h-[550px] xs:w-[300px] xs:h-[390px] xxs:w-[280px] xxs:h-[390px]  flex flex-col  items-center md:gap-y-8 xs:gap-y-4 xxs:gap-y-3 mb-14  p-3 rounded-md shadow-white shadow bg-[#000]">
           <div className="flex items-center justify-center">
             <i className="ri-youtube-fill text-red-600 md:text-5xl xs:text-3xl xxs:text-2xl mr-2"></i>
             <h1 className="text-white font-bold md:text-3xl xs:text-xl xxs:text-[18px] ">

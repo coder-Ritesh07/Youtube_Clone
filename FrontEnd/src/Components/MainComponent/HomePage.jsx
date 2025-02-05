@@ -26,7 +26,7 @@ function HomePage() {
     // Fetch all videos on component mount
     setPageloader(true)
     axios
-      .get("https://youtube-clone-2-s2ml.onrender.com/video/allvideos")
+      .get("http://localhost:5000/video/allvideos")
       .then((res) => {
         setPageloader(false)
         setAllVideos(res.data.video);
@@ -39,7 +39,7 @@ function HomePage() {
 
   useEffect(() => {
     if (search.trim() !== "") {
-      let Api_End_Point = `https://youtube-clone-2-s2ml.onrender.com/video/search`;
+      let Api_End_Point = `http://localhost:5000/video/search`;
 
       axios
         .post(Api_End_Point, { searchText: search })

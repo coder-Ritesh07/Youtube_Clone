@@ -36,7 +36,7 @@ function Header({ toggleSidebar,getTextfromHeader }) {
   // this is the handle logout function
   function getLogout() {
     axios
-      .post("https://youtube-clone-2-s2ml.onrender.com/user/logout", {}, { withCredentials: true })
+      .post("http://localhost:5000/user/logout", {}, { withCredentials: true })
       .then((res) => {
         console.log(res);
       })

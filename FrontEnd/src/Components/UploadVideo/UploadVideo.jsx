@@ -67,7 +67,7 @@ function UploadVideo() {
      return; // Ensure the function exits if the form is not properly filled
   }
     try {
-      const response = await axios.post('https://youtube-clone-2-s2ml.onrender.com/video/upload', uploadVideo, { withCredentials: true });
+      const response = await axios.post('http://localhost:5000/video/upload', uploadVideo, { withCredentials: true });
       console.log(response);
       navigate('/')
     } catch (error) {
