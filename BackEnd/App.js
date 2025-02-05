@@ -26,7 +26,7 @@ const app=express()
 
 // connect the frontEnd and Backend Here by using the cors
 app.use(cors({
-   origin: 'http://localhost:5173',
+   origin: 'https://youtube-clone-phi-dun.vercel.app',
    credentials:true
 }))
 
